@@ -36,18 +36,26 @@ public class ClientServiceImpl implements ClientService {
      * @throws Exception
      */
     @Override
-    public void save(Long id, ClientDto dto) throws Exception {
+    public void save(/*Long id,*/ ClientDto dto) throws Exception {
 
         Client client;
 
         // Busco el nombre recibido y almaceno dicho cliente en el nuevo objeto Client
         Client clienteABuscar = clientRepository.findByName(dto.getName());
 
+
+        //Cambio
+
+        client = new Client();
+/*
         if (id == null) {
             client = new Client();
         } else {
             client = this.clientRepository.findById(id).orElse(null);
         }
+*/
+
+        //fin cambio
 
         client.setName(dto.getName());
 
@@ -80,6 +88,34 @@ public class ClientServiceImpl implements ClientService {
     public Client get(Long id) {
 
         return this.clientRepository.findById(id).orElse(null);
+    }
+
+
+    /**
+     * {@inheritDoc}
+     * 
+     * @throws Exception
+     */
+    @Override
+    public void update(Long id, ClientDto dto) throws Exception {
+
+        Client client;
+
+        // Busco el nombre recibido y almaceno dicho cliente en el nuevo objeto Client
+        Client clienteABuscar = clientRepository.findByName(dto.getName());
+        
+        client = this.clientRepository.findById(id).orElse(null);
+
+        
+        client.setName(dto.getName());
+
+        // En caso de no existir, o ser el nombre del propio cliente se guarda el cliente. Si existe, se lanza
+        // excepción
+        if (clienteABuscar == null || clienteABuscar.getId().equals(id)) {
+            this.clientRepository.save(client);
+        } else {
+            throw new Exception();
+        }
     }
 
 }
