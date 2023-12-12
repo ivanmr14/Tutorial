@@ -37,5 +37,8 @@ export class CategoryEditComponent implements OnInit {
   onClose() {
     this.dialogRef.close();
   }
-
+  
+  comprobarCampos(): boolean {
+    return !this.category.name;
+  }
 }

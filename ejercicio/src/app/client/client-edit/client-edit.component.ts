@@ -50,5 +50,16 @@ export class ClientEditComponent implements OnInit {
   onClose() {
     this.dialogRef.close();
   }
-
+  
+  comprobarCampos(): boolean {
+    return !this.client.name;
+  }
+        
+  actualizarCliente(){
+    this.clientService.saveClient(this.client).subscribe(result => {
+      this.dialogRef.close();
+    }
+    );
+  }
+  
 }
