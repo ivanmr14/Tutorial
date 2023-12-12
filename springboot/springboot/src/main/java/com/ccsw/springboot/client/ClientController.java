@@ -60,16 +60,7 @@ public class ClientController {
     public void save(@PathVariable(name = "id", required = false) Long id, @RequestBody ClientDto dto)
             throws Exception {
 
-//cambio
-            	if(id == null){
-            		this.clientService.save(dto);
-            	}else{
-            		this.clientService.update(id,dto);
-            	}
-
-//fin cambio
-       //anterior
-        //this.clientService.save(id, dto);
+        this.clientService.save(id, dto);
     }
 
     /**
