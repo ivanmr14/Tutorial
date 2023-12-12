@@ -85,11 +85,5 @@ export class PrestamoEditComponent implements OnInit {
         );
     }
 
-    comprobarCampos(): boolean{
-       return !this.prestamo.game || 
-              !this.prestamo.client || 
-              !this.prestamo.fechaComienzo || 
-              !this.prestamo.fechaDevolucion;     
-    }
 
 }

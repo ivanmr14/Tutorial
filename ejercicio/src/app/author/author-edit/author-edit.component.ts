@@ -37,8 +37,4 @@ export class AuthorEditComponent implements OnInit {
         this.dialogRef.close();
     }
 
-     comprobarCampos(): boolean {
-        return !this.author.name || 
-               !this.author.nationality;
-    }
 }

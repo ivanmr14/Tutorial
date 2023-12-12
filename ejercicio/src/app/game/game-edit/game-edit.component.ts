@@ -70,12 +70,5 @@ export class GameEditComponent implements OnInit {
     onClose() {
         this.dialogRef.close();
     }
-            
-    comprobarCampos(): boolean {
-        return !this.game.title || 
-               !this.game.age || 
-               !this.game.category || 
-               !this.game.author;
-    }
 
 }
