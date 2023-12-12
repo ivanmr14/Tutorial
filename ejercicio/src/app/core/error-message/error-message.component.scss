@@ -1,17 +1,24 @@
 .container {
-    min-width: 350px;
-    max-width: 500px;
-    padding: 20px;
+  min-width: 350px;
+  max-width: 500px;
+  padding: 20px;
 
-    .description {
-      margin-bottom: 20px;
+  .description {
+    margin-bottom: 20px;
+  }
+
+  .buttons {
+    text-align: right;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+
+    button {
+        margin-left: 10px;
     }
+  }
+  
+  .si{
+     background-color: #673AB7;
+     color: white;
+  }
 
-    .buttons {
-      text-align: right;
-
-      button {
-          margin-left: 10px;
-      }
-    }
-}    
+}     
