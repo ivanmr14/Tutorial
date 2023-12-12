@@ -58,7 +58,18 @@ export class ClientEditComponent implements OnInit {
   actualizarCliente(){
     this.clientService.saveClient(this.client).subscribe(result => {
       this.dialogRef.close();
-    }
+    },
+
+    error=>{
+      this.dialog.open(ErrorMessageComponent, {
+          data: { 
+              title: "No se ha podido actualizar el cliente", 
+              description: "El nombre ya está dado de alta." 
+          }
+      })
+  }
+
+
     );
   }
   

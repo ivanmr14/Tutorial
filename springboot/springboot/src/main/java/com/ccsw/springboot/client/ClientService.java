@@ -19,13 +19,22 @@ public interface ClientService {
     List<Client> findAll();
 
     /**
-     * Método para crear o actualizar un {@link Client}
+     * Método para crear un {@link Client}
      *
      * @param id  PK de la entidad
      * @param dto datos de la entidad
      * @throws Exception
      */
-    void save(Long id, ClientDto dto) throws Exception;
+    void save(ClientDto dto) throws Exception;
+
+    /**
+     * Método para actualizar un {@link Client}
+     *
+     * @param id  PK de la entidad
+     * @param dto datos de la entidad
+     * @throws Exception
+     */
+    void update(Long id, ClientDto dto) throws Exception;
 
     /**
      * Método para borrar un {@link Client}
