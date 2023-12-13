@@ -43,30 +43,6 @@ public class PrestamoController {
      * @return {@link Page} de {@link PrestamoDto}
      */
 
-    /*
-     * @Operation(summary = "Find Page", description =
-     * "Method that return a page of Prestamos")
-     * 
-     * @RequestMapping(path = "", method = RequestMethod.POST) public
-     * Page<PrestamoDto> findPage(@RequestBody PrestamoSearchDto dto) {
-     * 
-     * Page<Prestamo> page = this.prestamoService.findPage(dto);
-     * 
-     * return new PageImpl<>( page.getContent().stream().map(e -> mapper.map(e,
-     * PrestamoDto.class)).collect(Collectors.toList()), page.getPageable(),
-     * page.getTotalElements());
-     * 
-     * }
-     * 
-     */
-
-    /**
-     * Método para recuperar un listado paginado de {@link Prestamo}
-     *
-     * @param dto dto de búsqueda
-     * @return {@link Page} de {@link PrestamoDto}
-     */
-
     @Operation(summary = "Find Page", description = "Method that return a page of Prestamos")
     @RequestMapping(path = "", method = RequestMethod.POST)
     public Page<PrestamoDto> findPage(@RequestBody PrestamoSearchDto dto) {
@@ -105,51 +81,5 @@ public class PrestamoController {
     public void delete(@PathVariable("id") Long id) throws Exception {
         this.prestamoService.delete(id);
     }
-
-    /**
-     * Recupera un listado de prestamos {@link Prestamo}
-     *
-     * @return {@link List} de {@link PrestamoDto}
-     */
-
-    /*
-     * @Operation(summary = "Find", description =
-     * "Method that return a list of Prestamos")
-     * 
-     * @RequestMapping(path = "", method = RequestMethod.GET) public
-     * List<PrestamoDto> findAll() {
-     * 
-     * List<Prestamo> prestamos = this.prestamoService.findAll();
-     * 
-     * return prestamos.stream().map(e -> mapper.map(e,
-     * PrestamoDto.class)).collect(Collectors.toList()); }
-     * 
-     */
-
-    /**
-     * Método para recuperar una lista de {@link Prestamo}
-     *
-     * @param title título del juego
-     * @param name  nombre del cliente
-     * @return {@link List} de {@link PrestamoDto}
-     */
-    /*
-     * @Operation(summary = "Find", description =
-     * "Method that return a filtered list of Prestamos")
-     * 
-     * @RequestMapping(path = "", method = RequestMethod.GET) public
-     * List<PrestamoDto> find(@RequestParam(value = "title", required = false)
-     * String title,
-     * 
-     * @RequestParam(value = "name", required = false) String name) {
-     * 
-     * List<Prestamo> prestamos = prestamoService.find(title, name);
-     * 
-     * return prestamos.stream().map(e -> mapper.map(e,
-     * PrestamoDto.class)).collect(Collectors.toList());
-     * 
-     * }
-     * 
-     */
 
 }

@@ -54,7 +54,6 @@ public class PrestamoServiceImpl implements PrestamoService {
 
         return this.prestamoRepository.findAll(spec, dto.getPageable().getPageable());
 
-        // return this.prestamoRepository.findAll(dto.getPageable().getPageable());
     }
 
     /**
@@ -64,11 +63,6 @@ public class PrestamoServiceImpl implements PrestamoService {
     public void save(Long id, PrestamoDto data) {
 
         Prestamo prestamo;
-
-        /*
-         * if (id == null) { prestamo = new Prestamo(); } else { prestamo =
-         * this.prestamoRepository.findById(id).orElse(null); }
-         */
 
         prestamo = new Prestamo();
 
@@ -126,30 +120,5 @@ public class PrestamoServiceImpl implements PrestamoService {
     public Prestamo get(Long id) {
         return this.prestamoRepository.findById(id).orElse(null);
     }
-
-    /**
-     * {@inheritDoc}
-     */
-    /*
-     * @Override public List<Prestamo> findAll() {
-     * 
-     * return (List<Prestamo>) this.prestamoRepository.findAll(); }
-     * 
-     */
-    /**
-     * {@inheritDoc}
-     */
-
-    /*
-     * @Override public List<Prestamo> find(String title, String name) {
-     * 
-     * PrestamoSpecification titleSpec = new PrestamoSpecification(new
-     * SearchCriteria("game.title", ":", title)); PrestamoSpecification nameSpec =
-     * new PrestamoSpecification(new SearchCriteria("client.name", ":", name));
-     * 
-     * Specification<Prestamo> spec = Specification.where(titleSpec).and(nameSpec);
-     * 
-     * return this.prestamoRepository.findAll(spec); }
-     */
 
 }

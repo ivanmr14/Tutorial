@@ -43,21 +43,4 @@ public interface PrestamoService {
      */
     void delete(Long id) throws Exception;
 
-    /**
-     * Recupera un listado de prestamos {@link Prestamo}
-     *
-     * @return {@link List} de {@link Prestamo}
-     */
-    // List<Prestamo> findAll();
-
-    /**
-     * Recupera los préstamos filtrando opcionalmente por título del juego y/o
-     * nombre del cliente
-     *
-     * @param title título del juego
-     * @param name  nombre del cliente
-     * @return {@link List} de {@link Prestamo}
-     */
-    // List<Prestamo> find(String title, String name);
-
 }

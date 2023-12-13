@@ -18,12 +18,7 @@ import com.ccsw.springboot.prestamo.model.Prestamo;
  *
  */
 public interface PrestamoRepository extends CrudRepository<Prestamo, Long>, JpaSpecificationExecutor<Prestamo> {
-    /*
-     * @Override
-     * 
-     * @EntityGraph(attributePaths = { "game", "client" }) List<Prestamo>
-     * findAll(Specification<Prestamo> spec);
-     */
+
     /**
      * Método para recuperar un listado paginado de {@link Prestamo}
      *
