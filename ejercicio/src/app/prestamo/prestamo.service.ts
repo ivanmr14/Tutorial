@@ -27,6 +27,7 @@ export class PrestamoService {
     savePrestamo(prestamo: Prestamo): Observable<void> {
 
         const fechaActual = new Date();
+        fechaActual.setHours(0,0,0,0);
         if(prestamo.fechaComienzo < fechaActual){
             this.dialog.open(ErrorMessageComponent, {
                 data: { 
