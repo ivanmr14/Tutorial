@@ -48,7 +48,7 @@ public class PrestamoController {
     public Page<PrestamoDto> findPage(@RequestBody PrestamoSearchDto dto) {
 
         if (dto.getFecha() != null) {
-            dto.setFecha(dto.getFecha().minusDays(1));
+            dto.setFecha(dto.getFecha().plusDays(1));
         }
 
         Page<Prestamo> page = prestamoService.findPage(dto);
