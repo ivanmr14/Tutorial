@@ -9,7 +9,9 @@
 
   .buttons {
     text-align: right;
-    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.26);
+    font-size: 16px bold;
+    border-radius: 50%;
+    padding: 10px;
 
     button {
         margin-left: 10px;
@@ -21,4 +23,4 @@
      color: white;
   }
 
-}     
+}    
