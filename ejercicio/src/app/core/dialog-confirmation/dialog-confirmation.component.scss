@@ -9,12 +9,14 @@
 
   .buttons {
     text-align: right;
-    font-size: 16px bold;
-    border-radius: 50%;
-    padding: 10px;
-
+    
     button {
         margin-left: 10px;
+        border-radius: 10%;
+        padding: 10px;
+        padding-left: 15px;
+        padding-right: 15px;
+        font-size: 16px bold;
     }
   }
   
