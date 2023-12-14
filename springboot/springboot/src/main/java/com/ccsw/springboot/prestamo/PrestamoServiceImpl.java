@@ -76,29 +76,24 @@ public class PrestamoServiceImpl implements PrestamoService {
         if (ChronoUnit.DAYS.between(prestamo.getFechaComienzo(), prestamo.getFechaDevolucion()) > 14) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
                     "El rango de fecha del préstamo es superior al permitido.");
+        }
+
+        boolean comprobacionPrestamoJuego = prestamoRepository
+                .existsByGameAndFechaComienzoLessThanEqualAndFechaDevolucionGreaterThanEqual(prestamo.getGame(),
+                        prestamo.getFechaDevolucion(), prestamo.getFechaComienzo());
+
+        if (comprobacionPrestamoJuego == true) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "El juego ya se encuentra en préstamo.");
+        }
+
+        boolean comprobacionPrestamosCliente = prestamoRepository
+                .existsByClientAndFechaComienzoLessThanEqualAndFechaDevolucionGreaterThanEqual(prestamo.getClient(),
+                        prestamo.getFechaDevolucion(), prestamo.getFechaComienzo());
+
+        if (comprobacionPrestamosCliente == true) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "El cliente ya tiene un préstamo activo.");
         } else {
-
-            boolean comprobacionPrestamoJuego = prestamoRepository
-                    .existsByGameAndFechaComienzoLessThanEqualAndFechaDevolucionGreaterThanEqual(prestamo.getGame(),
-                            prestamo.getFechaDevolucion(), prestamo.getFechaComienzo());
-
-            if (comprobacionPrestamoJuego == true) {
-
-                throw new ResponseStatusException(HttpStatus.CONFLICT, "El juego ya se encuentra en préstamo.");
-
-            } else {
-
-                boolean comprobacionPrestamosCliente = prestamoRepository
-                        .existsByClientAndFechaComienzoLessThanEqualAndFechaDevolucionGreaterThanEqual(
-                                prestamo.getClient(), prestamo.getFechaDevolucion(), prestamo.getFechaComienzo());
-
-                if (comprobacionPrestamosCliente == true) {
-                    throw new ResponseStatusException(HttpStatus.CONFLICT, "El cliente ya tiene un préstamo activo.");
-
-                } else {
-                    this.prestamoRepository.save(prestamo);
-                }
-            }
+            this.prestamoRepository.save(prestamo);
         }
 
     }
