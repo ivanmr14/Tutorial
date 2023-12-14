@@ -77,16 +77,17 @@ public class PrestamoServiceImpl implements PrestamoService {
         LocalDate fechaActual = LocalDate.now();
 
         if (prestamo.getFechaComienzo().isBefore(fechaActual)) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "La fecha de inicio es anterior a la fecha actual.");
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                    "La fecha de inicio es anterior a la fecha actual.");
         }
 
         if (prestamo.getFechaDevolucion().isBefore(prestamo.getFechaComienzo())) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
+            throw new ResponseStatusException(HttpStatus.EXPECTATION_FAILED,
                     "La fecha de inicio es posterior a la fecha de fin.");
         }
 
         if (ChronoUnit.DAYS.between(prestamo.getFechaComienzo(), prestamo.getFechaDevolucion()) > 14) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT,
+            throw new ResponseStatusException(HttpStatus.NOT_ACCEPTABLE,
                     "El rango de fecha del préstamo es superior al permitido.");
         }
 
@@ -95,7 +96,7 @@ public class PrestamoServiceImpl implements PrestamoService {
                         prestamo.getFechaDevolucion(), prestamo.getFechaComienzo());
 
         if (comprobacionPrestamoJuego == true) {
-            throw new ResponseStatusException(HttpStatus.CONFLICT, "El juego ya se encuentra en préstamo.");
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "El juego ya se encuentra en préstamo.");
         }
 
         boolean comprobacionPrestamosCliente = prestamoRepository

@@ -49,10 +49,32 @@ export class PrestamoEditComponent implements OnInit {
         },
 
         error=>{
+            let errorMsg = "";
+
+            if(error.status == 400){
+                errorMsg = "La fecha de inicio es anterior a la fecha actual.";
+            }
+
+            if(error.status == 401){
+                errorMsg = "El juego ya se encuentra en préstamo.";
+            }
+
+            if(error.status == 406){
+                errorMsg = "El rango de fecha del préstamo es superior al permitido.";
+            }
+
+            if(error.status == 409){
+                errorMsg = "El cliente ya tiene un préstamo activo.";
+            }
+
+            if(error.status == 417){
+                errorMsg = "La fecha de inicio es posterior a la fecha de fin.";
+            }
+
             this.dialog.open(ErrorMessageComponent, {
                 data: { 
-                    title: "No se ha podido crear el préstamo", 
-                    description: "Revisa la disponibilidad del  juego, y si el cliente ya tiene asignado un préstamo en la fecha solicitada." 
+                    title: "No se ha podido crear el préstamo",
+                    description: errorMsg
                 }
             })
         }
