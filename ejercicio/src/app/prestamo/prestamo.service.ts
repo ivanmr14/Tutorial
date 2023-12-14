@@ -26,46 +26,9 @@ export class PrestamoService {
 
     savePrestamo(prestamo: Prestamo): Observable<void> {
 
-        const fechaActual = new Date();
-        fechaActual.setHours(0,0,0,0);
-        if(prestamo.fechaComienzo < fechaActual){
-            this.dialog.open(ErrorMessageComponent, {
-                data: { 
-                    title: "No se ha podido crear el préstamo", 
-                    description: "La fecha de comienzo no puede ser anterior a la fecha actual." 
-                }
-            })
-        }else{
-
-        
-            if(prestamo.fechaComienzo> prestamo.fechaDevolucion ){
-                this.dialog.open(ErrorMessageComponent, {
-                    data: { 
-                        title: "No se ha podido crear el préstamo", 
-                        description: "La fecha de comienzo es posterior a la fecha de fin." 
-                    }
-                })
-            }else{
-                const fechaComienzo = new Date(prestamo.fechaComienzo).getDate();
-                const fechaDevolucion = new Date(prestamo.fechaDevolucion).getDate();
-
-                // (1000*60*60*24) --> milisegundos -> segundos -> minutos -> horas -> días
-                const plazo = (fechaDevolucion-fechaComienzo)/ (1000*60*60*24);
-
-                if(Math.abs(plazo) > 14){
-                    this.dialog.open(DialogConfirmationComponent, {
-                        data: { 
-                            title: "No se ha podido crear el préstamo", 
-                            description: "El plazo del préstamo es superior a 14 días." 
-                        }
-                    })
-                }else{
-                    let url = 'http://localhost:8080/prestamo';
-                    return this.http.put<void>(url, prestamo);
-                }
+        let url = 'http://localhost:8080/prestamo';
+        return this.http.put<void>(url, prestamo);
                 
-            }
-        }
     }
 
     deletePrestamo(idPrestamo : number): Observable<void> {

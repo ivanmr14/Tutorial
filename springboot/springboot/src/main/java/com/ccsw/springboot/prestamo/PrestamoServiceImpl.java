@@ -1,5 +1,6 @@
 package com.ccsw.springboot.prestamo;
 
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 
 import org.springframework.beans.BeanUtils;
@@ -72,6 +73,17 @@ public class PrestamoServiceImpl implements PrestamoService {
         prestamo.setGame(gameService.get(data.getGame().getId()));
         prestamo.setFechaComienzo(data.getFechaComienzo().plusDays(1));
         prestamo.setFechaDevolucion(data.getFechaDevolucion().plusDays(1));
+
+        LocalDate fechaActual = LocalDate.now();
+
+        if (prestamo.getFechaComienzo().isBefore(fechaActual)) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "La fecha de inicio es anterior a la fecha actual.");
+        }
+
+        if (prestamo.getFechaDevolucion().isBefore(prestamo.getFechaComienzo())) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT,
+                    "La fecha de inicio es posterior a la fecha de fin.");
+        }
 
         if (ChronoUnit.DAYS.between(prestamo.getFechaComienzo(), prestamo.getFechaDevolucion()) > 14) {
             throw new ResponseStatusException(HttpStatus.CONFLICT,
